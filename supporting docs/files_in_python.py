@@ -42,9 +42,13 @@ with open('test2.txt','w') as f:
     f.write('R')
 
 # %%
-with open('test.txt','r') as rf: 
-    with open('text2.txt','w') as wf: 
-        for line in rf:
-            wf.write(line)
+with open('IMG_20190511_203353.jpg','rb') as rf: 
+    with open('text2.jpg','wb') as wf: 
+        chunk_size = 4096 
+        # readng this much data from the original picture 
+        rf_chunk = rf.read(chunk_size)
+        while len(rf_chunk) > 0:
+            wf.write(rf_chunk)
+            rf_chunk = rf.read(chunk_size)
     
 # %%
